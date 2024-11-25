@@ -202,3 +202,44 @@ COMMON_NOUNS = [
     "участие",
 ]
 
+# основаня цель игры: программа рисует картинку, похожую на виселицу с человеком, используя символы
+import random
+
+word = list(random.choice(COMMON_NOUNS))
+print("".join(word))
+
+def main():
+    while True:
+        print("Слово:")
+        playfield = []
+        tryies = 0
+        while tryies < 7:
+            gui = tryies(playfield, word)
+            print(HANGMANPICS[tryies])
+            print(gui)
+        for i in word:
+            playfield.append("_")
+            print(" ".join(playfield))
+        x = list(input("Введите букву: "))
+
+        for i in word:
+            if x[0] == word[0]:
+                playfield[0]
+        
+        if len(x) != 1:
+            print("Введите одну букву")
+
+        if word[0] == x[0]:
+            continue
+        else:
+            print(HANGMANPICS[0])
+main()
+
+def tryies(playfield, word):
+    guess = ""
+    for i in playfield:
+        if i in tryies:
+            guess += f"{i}"
+        else:
+            guess += "_ "
+        return guess 
