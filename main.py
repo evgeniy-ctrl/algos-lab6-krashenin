@@ -1,3 +1,4 @@
+import random
 """
 Практическая работа: Создание игры «Виселица»
 
@@ -203,22 +204,48 @@ COMMON_NOUNS = [
 ]
 
 # основаня цель игры: программа рисует картинку, похожую на виселицу с человеком, используя символы
-answer = list(random.choice(COMMON_NOUNS))
-print("".join(answer))
+def main(): 
+    answer = list(random.choice(COMMON_NOUNS))
+    print("".join(answer)) 
+    at = 0
+    playfield = []
+    for i in answer:
+        playfield.append("_")
+  
+    while True:
+        print("слово:")
+        print("".join(playfield))
+        x = input("Введите букву: ")
 
-def main():
-  playfield = []
-  for i in answer:
-      playfield.append("_")
-  attempts = 0
-  max_attempts = 6
+        if len(x) > 1:
+            print("Введите одну букву")
+            continue
 
-  while True:
-    print("слово:")
-    print("".join(playfield))
-    x = input("Введите букву: ")
+        for i in range (len(answer)):
+            if x == answer[i]:
+                playfield[i] = x
+      
+        if answer == playfield:
+            print("Вы угадали!")
+            break
 
-    if len(x) > 1:
-       print("Введите одну букву")
-       continue
-main()
+        if x in answer:
+            continue
+        else:
+            print(HANGMANPICS[at])
+            at += 1
+    
+        if at == 7:
+            print("Вы проиграли!")
+            break
+
+
+while True:
+    user = input("Хотите сыграть еще раз? (да\нет): ")
+    if user == 'да':
+       main()
+    elif user == 'нет':
+       print('Спасибо за игру!')
+       break
+    else:
+       print("Выберите один вариант ответа") 
